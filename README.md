@@ -98,3 +98,13 @@ Correlation & Redundancy
 - Later modeling may need to handle redundancy (e.g., via feature selection, regularization, or engineered summaries).
 
 The EDA results guide the design of the **Probability of Default (PD) models** 
+
+3- Train/test split
+
+Decided to use the two following methods for breviety and simplicity but, more models can be implemented to check true average precision(Monte Carlo, Poisson Process* , Markov Chain, Fault/Event Tree)
+Logistic regression baseline (with scaling + class weights)
+
+Random Forest challenger
+
+Metrics: AUC, KS, confusion matrix, calibration plot
+
