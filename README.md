@@ -101,7 +101,8 @@ The EDA results guide the design of the **Probability of Default (PD) models**
 
 3- Train/test split
 
-Decided to use the two following methods for breviety and simplicity but, more models can be implemented to check true average precision(Monte Carlo, Poisson Process* , Markov Chain, Fault/Event Tree)
+Decided to use the two following methods for breviety and simplicity but, more models can be implemented to check true average precision(Monte Carlo, Poisson Process* , Markov Chain, Fault/Event Tree, etc)
+
 Logistic regression baseline (with scaling + class weights)
 
 Random Forest challenger
