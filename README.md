@@ -1,6 +1,6 @@
 1 – Data Understanding & Cleaning
 
-Prepare a clean, well-understood version of the UCI "Default of Credit Card Clients" dataset to be used for credit risk modeling (Probability of Default and Expected Loss).
+Prepared a clean, well-understood version of the UCI "Default of Credit Card Clients" dataset to be used for credit risk modeling (Probability of Default and Expected Loss).
 
 
 
