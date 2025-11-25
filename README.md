@@ -58,3 +58,43 @@ Data types were standardized:
 - **Default rate by credit limit buckets** (`LIMIT_BAL` quintiles):  
   Checked whether customers with lower or higher credit limits exhibit different default behavior.
 
+2 – Exploratory Data Analysis (EDA)
+
+ 
+Develop a credit-risk-focused understanding of the dataset by exploring how key features relate to the probability of default, identifying important predictors, and spotting potential data issues before modeling.
+
+Univariate Distributions
+
+- Examined the distributions of key numeric variables:
+  - `LIMIT_BAL` (credit limit), `AGE`
+  - Bill statement amounts (`BILL_AMT1`–`BILL_AMT6`)
+  - Payment amounts (`PAY_AMT1`–`PAY_AMT6`)
+- Observed that:
+  - Monetary variables are highly skewed, with a large mass near zero and a long right tail.
+  - Credit limits and bill amounts vary over several orders of magnitude, consistent with heterogeneous customer segments.
+
+Categorical Feature Exploration
+
+- Analyzed the frequency and distribution of:
+  - `SEX`, `EDUCATION`, `MARRIAGE`
+  - Payment status variables `PAY_0`, `PAY_2`, `PAY_3`, `PAY_4`, `PAY_5`, `PAY_6`
+- Verified that category levels and frequencies are consistent with expectations after the cleaning in Stage 1.
+
+Default Rate by Feature 
+
+- Computed and visualized **default rates** across:
+  - Categorical variables: `SEX`, `EDUCATION`, `MARRIAGE`, `PAY_*`
+  - Bucketed numeric variables:
+    - `LIMIT_BAL` (credit limit quintiles)
+    - `AGE` bands (e.g., 20–29, 30–39, etc.)
+- Key observations (to be refined as modeling progresses):
+  - Higher recent payment delay codes (`PAY_0`, etc.) are associated with significantly higher default rates.
+  - Default behavior varies across credit limit buckets and age groups, suggesting segmentation effects.
+
+Correlation & Redundancy
+
+- Computed a correlation matrix for numeric features (especially `BILL_AMT*` and `PAY_AMT*`).
+- Identified strong correlations among consecutive bill/payment amounts, which:
+- Later modeling may need to handle redundancy (e.g., via feature selection, regularization, or engineered summaries).
+
+The EDA results guide the design of the **Probability of Default (PD) models** 
