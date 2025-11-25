@@ -109,3 +109,37 @@ Random Forest challenger
 
 Metrics: AUC, KS, confusion matrix, calibration plot
 
+4 – Expected Loss (EL) & Portfolio Risk View
+
+
+Translate Probability of Default (PD) model outputs into **Expected Loss (EL)** and a **portfolio-level risk view**
+
+
+ **Exposure at Default (EAD)**  
+   - Used `LIMIT_BAL` (credit limit) as a proxy for Exposure at Default.
+
+ **Loss Given Default (LGD)**  
+   - Assumed a constant LGD of 50% for unsecured credit card exposures.
+   - This is a simplifying assumption; in production settings, LGD would typically be modeled separately.
+
+ **Loan-Level Expected Loss**  
+   - Applied the PD model (Random Forest) to the test set to obtain loan-level PDs.
+   - Computed Expected Loss:
+     ELi = PDi * LGDi * EADi
+
+ **Risk Bucketing & Portfolio View**
+   - Sorted accounts into **PD deciles** (1 = lowest PD, 10 = highest PD) and computed, for each decile:
+     - Number of accounts
+     - Average PD
+     - Total EAD
+     - Total EL
+     - Share of total portfolio EL
+   - Additionally grouped deciles into broader **rating grades** (A–E) to mimic internal risk rating systems.
+
+
+
+- Obtained loan-level PD and EL estimates on the test set, along with a portfolio breakdown.
+- Showed that **higher PD buckets contribute a disproportionately large share of total Expected Loss**, illustrating how PD models can be used to:
+
+
+
