@@ -1,4 +1,4 @@
-1 – Data Understanding & Cleaning
+**********1 – Data Understanding & Cleaning
 
 Prepared a clean, well-understood version of the UCI "Default of Credit Card Clients" dataset to be used for credit risk modeling (Probability of Default and Expected Loss).
 
@@ -143,3 +143,4 @@ Translate Probability of Default (PD) model outputs into **Expected Loss (EL)** 
 
 
 
+**************
