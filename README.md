@@ -9,7 +9,7 @@ Prepared a clean, well-understood version of the UCI "Default of Credit Card Cli
 - Target variable: `default.payment.next.month`  
   - `1` = customer defaulted on the next month’s payment  
   - `0` = customer did not default  
-- In this project we treat this as a **1-month default indicator** and use it as our binary PD target.
+- In this project we treat this as a 1-month default indicator and use it as our binary PD target.
 
 
 - Loaded the original Excel file using `pandas.read_excel`.
@@ -34,9 +34,9 @@ Data types were standardized:
 - Numeric variables cast to `float64`.
 
 
-- Checked for **missing values** across all columns.  
+- Checked for missing values across all columns.  
   The original UCI dataset does not contain explicit NaNs, but we still verified this in case of future transformations.
-- Identified **inconsistent or undocumented category codes**:
+- Identified inconsistent or undocumented category codes**:
   - `EDUCATION` contained values {0, 5, 6}, which are not part of the official coding scheme.
   - `MARRIAGE` contained some `0` values, also undocumented.
 - Applied the following cleaning rules:
@@ -55,7 +55,7 @@ Data types were standardized:
 
 - Default rate by payment status (`PAY_0`):  
   Confirmed that more severe recent payment delays are associated with higher default rates.
-- **Default rate by credit limit buckets** (`LIMIT_BAL` quintiles):  
+- **Default rate by credit limit buckets (`LIMIT_BAL` quintiles):  
   Checked whether customers with lower or higher credit limits exhibit different default behavior.
 
 2 – Exploratory Data Analysis (EDA)
@@ -82,7 +82,7 @@ Categorical Feature Exploration
 
 Default Rate by Feature 
 
-- Computed and visualized **default rates** across:
+- Computed and visualized default rates across:
   - Categorical variables: `SEX`, `EDUCATION`, `MARRIAGE`, `PAY_*`
   - Bucketed numeric variables:
     - `LIMIT_BAL` (credit limit quintiles)
@@ -112,33 +112,33 @@ Metrics: AUC, KS, confusion matrix, calibration plot
 4 – Expected Loss (EL) & Portfolio Risk View
 
 
-Translate Probability of Default (PD) model outputs into **Expected Loss (EL)** and a **portfolio-level risk view**
+Translate Probability of Default (PD) model outputs into Expected Loss (EL) and a portfolio-level risk view
 
 
- Exposure at Default (EAD)**  
+ Exposure at Default (EAD)
    - Used `LIMIT_BAL` (credit limit) as a proxy for Exposure at Default.
 
- Loss Given Default (LGD)**  
+ Loss Given Default (LGD)
    - Assumed a constant LGD of 50% for unsecured credit card exposures.
    - This is a simplifying assumption; in production settings, LGD would typically be modeled separately.
 
- Loan-Level Expected Loss**  
+ Loan-Level Expected Loss
    - Applied the PD model (Random Forest) to the test set to obtain loan-level PDs.
    - Computed Expected Loss:
      ELi = PDi * LGDi * EADi
 
- **Risk Bucketing & Portfolio View**
-   - Sorted accounts into **PD deciles** (1 = lowest PD, 10 = highest PD) and computed, for each decile:
+ Risk Bucketing & Portfolio View
+   - Sorted accounts into PD deciles (1 = lowest PD, 10 = highest PD) and computed, for each decile:
      - Number of accounts
      - Average PD
      - Total EAD
      - Total EL
      - Share of total portfolio EL
-   - Additionally grouped deciles into broader **rating grades** (A–E) to mimic internal risk rating systems.
+   - Additionally grouped deciles into broader rating grades (A–E) to mimic internal risk rating systems.
 
 
 
 - Obtained loan-level PD and EL estimates on the test set, along with a portfolio breakdown.
-- Showed that **higher PD buckets contribute a disproportionately large share of total Expected Loss**, illustrating how PD models can be used to:
+- Showed that higher PD buckets contribute a disproportionately large share of total Expected Loss, illustrating how PD models can be used to:
 
 
