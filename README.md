@@ -1,4 +1,4 @@
-**********1 – Data Understanding & Cleaning
+1 – Data Understanding & Cleaning
 
 Prepared a clean, well-understood version of the UCI "Default of Credit Card Clients" dataset to be used for credit risk modeling (Probability of Default and Expected Loss).
 
@@ -22,10 +22,10 @@ Prepared a clean, well-understood version of the UCI "Default of Credit Card Cli
 
 Columns were grouped into:
 
-- **Categorical variables**  
+- Categorical variables 
   `SEX`, `EDUCATION`, `MARRIAGE`, `PAY_0`, `PAY_2`, `PAY_3`, `PAY_4`, `PAY_5`, `PAY_6`, `default.payment.next.month`
 
-- **Numeric variables**  
+- Numeric variables 
   `LIMIT_BAL`, `AGE`, all `BILL_AMT*` (bill statements) and `PAY_AMT*` (payments).
 
 Data types were standardized:
@@ -53,7 +53,7 @@ Data types were standardized:
 - Verified that the **overall default rate** is reasonable and consistent with published information for this dataset.
 
 
-- **Default rate by payment status** (`PAY_0`):  
+- Default rate by payment status (`PAY_0`):  
   Confirmed that more severe recent payment delays are associated with higher default rates.
 - **Default rate by credit limit buckets** (`LIMIT_BAL` quintiles):  
   Checked whether customers with lower or higher credit limits exhibit different default behavior.
@@ -115,14 +115,14 @@ Metrics: AUC, KS, confusion matrix, calibration plot
 Translate Probability of Default (PD) model outputs into **Expected Loss (EL)** and a **portfolio-level risk view**
 
 
- **Exposure at Default (EAD)**  
+ Exposure at Default (EAD)**  
    - Used `LIMIT_BAL` (credit limit) as a proxy for Exposure at Default.
 
- **Loss Given Default (LGD)**  
+ Loss Given Default (LGD)**  
    - Assumed a constant LGD of 50% for unsecured credit card exposures.
    - This is a simplifying assumption; in production settings, LGD would typically be modeled separately.
 
- **Loan-Level Expected Loss**  
+ Loan-Level Expected Loss**  
    - Applied the PD model (Random Forest) to the test set to obtain loan-level PDs.
    - Computed Expected Loss:
      ELi = PDi * LGDi * EADi
@@ -142,5 +142,3 @@ Translate Probability of Default (PD) model outputs into **Expected Loss (EL)** 
 - Showed that **higher PD buckets contribute a disproportionately large share of total Expected Loss**, illustrating how PD models can be used to:
 
 
-
-**************
